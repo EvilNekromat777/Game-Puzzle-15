@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Puzzle 15</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600|Sigmar+One&display=swap">
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+</head>
+
+<body>
+    <main class="page">
+
+        <h1 class="page__title">Puzzle 15</h1>
+
+        <section class="statistics">
+            <details class="statistics__winners">
+                <summary class="statistics__winners-header">Winners:</summary>
+                <ol class="statistics__winners-list">
+                    <li class="statistics__winners-item">
+                        Stephen Hawking - 0.99 sec
+                    </li>
+                </ol>
+
+            </details>
+            <p class="statistics__name">Player: Andrey</p>
+            <p class="statistics__timer">Time: 0:00</p>
+        </section>
+
+        <section class="game">
+
+            <div class="box game__box"></div>
+
+            <div class="game__controls">
+                <button class="button button_type_reset">Reset</button>
+                <button class="button button_type_start">Start</button>
+            </div>
+        </section>
+
+        <template data-component="cell">
+            <div id="1" class="cell">
+                <div class="cell__num">1</div>
+            </div>
+        </template>
+
+        <script src="./script.js"></script>
+    </main>
+</body>
+
+</html>
