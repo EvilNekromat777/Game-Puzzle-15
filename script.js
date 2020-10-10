@@ -16,6 +16,7 @@ renderCells();
 
 // Вешаем обработчики на кнопки
 resetButtonElem.addEventListener('click', function () {
+    stopGame();
     resetCells();
 })
 
@@ -30,8 +31,71 @@ function cellClickHandler(e) {
     if (!cellElem || cellElem.id === '0') {
         return
     }
-    console.log(cellElem.id);
+    runGemeCycle(cellElem);
 }
+
+
+function runGemeCycle(targetCell) {
+    // 1. Проверка, может ли ячейка двигаться
+    const num = parseInt(targetCell.id, 10) // String --> Number, '1' --> 1
+    console.log(canCellMove(num))
+
+    if (!canCellMove(num)) {         // предикат? true / false
+        return
+    }
+
+    // 2. Поменять местами
+    const numIdx = cells.indexOf(num);
+    const zeroInx = cells.indexOf(0);
+    cells[zeroInx] = num;
+    cells[numIdx] = 0;
+
+    const zeroCell = document.querySelector('[id="0"]');
+    updateCell(targetCell, 0);
+    updateCell(zeroCell, num);
+
+    // 3. Закончена ли игра?
+    if (isGameOver()) {
+        stopGame();
+        alert('You Win!!!')
+    }
+}
+
+function isGameOver() {
+    return cells.slice(0, 15).every((v, i) => v === i + 1);
+}
+
+
+function stopGame() {
+    const cellElems = document.querySelectorAll('.cell');
+    cellElems.forEach((el) => el.classList.remove('cell_active'));
+    boxElem.removeEventListener('click', cellClickHandler);
+}
+
+// Функция, которая должна проверить: ячейка может двигаться или нет
+function canCellMove(n) {
+    const idx = cells.indexOf(n);
+    // проверить ячейку:
+    // top
+    if (cells[idx - 4] === 0) {
+        return true
+    }
+    // bottom
+    if (cells[idx + 4] === 0) {
+        return true
+    }
+    // left
+    if (cells[idx - 1] === 0 && (idx % 4 !== 0)) {
+        return true
+    }
+    // right
+    if (cells[idx + 1] === 0 && (idx + 1) % 4 !== 0) {
+        return true
+    }
+    return false
+}
+
+
 
 // Функция активации игрового поля
 function activateCells() {
