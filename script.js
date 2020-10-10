@@ -17,15 +17,38 @@ renderCells();
 // Вешаем обработчики на кнопки
 resetButtonElem.addEventListener('click', function () {
     resetCells();
-
 })
+
+startButtonElem.addEventListener('click', function () {
+    activateCells();
+    boxElem.addEventListener('click', cellClickHandler)
+    // сюда потом сделать еще функцию включения таймера
+})
+
+function cellClickHandler(e) {
+    const cellElem = e.target.closest('.cell');
+    if (!cellElem || cellElem.id === '0') {
+        return
+    }
+    console.log(cellElem.id);
+}
+
+// Функция активации игрового поля
+function activateCells() {
+    const cellElems = document.querySelectorAll('.cell')
+    cellElems.forEach((el) => el.classList.add('cell_active'))
+}
+
 
 // Функция перемешивает ячейки
 function resetCells() {
     cells = _.shuffle(cells);
     const cellElems = document.querySelectorAll('.cell')
     cells.forEach((n, i) => updateCell(cellElems[i], n));
+    // то же самое: cells.forEach (function (n, i) {
+    // return updateCell(cellElems[i], n)}
 }
+
 
 
 // Функция рендерит ячейки
