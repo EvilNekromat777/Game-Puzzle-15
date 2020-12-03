@@ -11,4 +11,4 @@
 - записать игрока в табличку
 - сделать красиво (поздравление с победой) 
 
-## Проект выложен на Git Hub Pages: 
+## Проект выложен на Git Hub Pages: https://evilnekromat777.github.io/Game-Puzzle-15/
